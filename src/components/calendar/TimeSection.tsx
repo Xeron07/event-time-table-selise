@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 interface TimeSectionProps {
   className?: string;
-  scrollRef?: React.RefObject<HTMLDivElement>;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
   onScroll?: (scrollTop: number) => void;
 }
 

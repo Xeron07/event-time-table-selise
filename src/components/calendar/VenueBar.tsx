@@ -7,7 +7,7 @@ interface VenueBarProps {
   venues: Venue[];
   selectedVenue: string | null;
   onVenueSelect: (venueId: string) => void;
-  scrollRef?: React.RefObject<HTMLDivElement>;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
   onScroll?: (scrollLeft: number) => void;
 }
 

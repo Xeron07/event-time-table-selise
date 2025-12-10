@@ -9,7 +9,7 @@ interface CalendarHeaderProps {
   venues: Venue[];
   selectedVenue: string | null;
   onVenueSelect: (venueId: string) => void;
-  venueBarScrollRef?: React.RefObject<HTMLDivElement>;
+  venueBarScrollRef?: React.RefObject<HTMLDivElement | null>;
   onVenueBarScroll?: (scrollLeft: number) => void;
   weekDays?: Date[];
 }

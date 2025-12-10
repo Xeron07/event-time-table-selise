@@ -10,7 +10,7 @@ interface CalendarGridProps {
   selectedDate: Date;
   onCellClick?: (venueId: string, time: string) => void;
   onEventClick?: (event: Event) => void;
-  scrollRef?: React.RefObject<HTMLDivElement>;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
   onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
 
