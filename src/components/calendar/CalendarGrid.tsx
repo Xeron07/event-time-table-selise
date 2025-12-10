@@ -70,26 +70,28 @@ const CalendarGrid = ({
     <div className='relative flex-1 overflow-hidden'>
       <div
         ref={scrollRef}
-        className='h-[98vh] max-w-[90vw] bg-gray-50 overflow-auto scrollbar-hide'
+        className='max-h-[98vh] max-w-[90vw] bg-gray-100 overflow-auto scrollbar-hide'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}>
         {/* Grid container with relative positioning for absolute event cards */}
         <div className='flex relative'>
-          {venues.map((venue) => (
-            <div key={venue.id} className='shrink-0 w-[250px]'>
+          {venues.map((venue, index) => (
+            <div key={index} className='shrink-0 w-[250px]'>
               {timeSlots.map((time) => (
                 <div
                   key={`${venue.id}-${time}`}
                   onClick={() => handleCellClick(venue.id, time)}
-                  className='h-20 cursor-pointer hover:bg-gray-50 transition-colors relative'
+                  className='h-20 cursor-pointer hover:bg-blue-50 transition-colors relative border-b border-r border-gray-300'
                   style={{
                     backgroundColor: "transparent",
                   }}>
                   {/* Cell is clickable for event creation */}
                 </div>
               ))}
+              {/* Bottom padding for last venue to allow scrolling to bottom */}
+              <div className='h-[20vh]' />
             </div>
           ))}
 

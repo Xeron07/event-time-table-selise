@@ -1,9 +1,9 @@
-import Calendar from "./components/calendar/Calendar";
+import Layout from "./components/calendar/Layout";
 
 function App() {
   return (
     <>
-      <Calendar />
+      <Layout />
     </>
   );
 }

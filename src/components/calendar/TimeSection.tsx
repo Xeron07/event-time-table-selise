@@ -7,17 +7,22 @@ interface TimeSectionProps {
   onScroll?: (scrollTop: number) => void;
 }
 
-const TimeSection = ({ className = "", scrollRef, onScroll }: TimeSectionProps) => {
+const TimeSection = ({
+  className = "",
+  scrollRef,
+  onScroll,
+}: TimeSectionProps) => {
   // Generate time slots for 24 hours with 15-minute intervals
   const generateTimeSlots = () => {
     const slots: string[] = [];
-    for (let hour = 0; hour <= 24; hour++) {
+    for (let hour = 0; hour < 24; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
         const formattedHour = hour.toString().padStart(2, "0");
         const formattedMinute = minute.toString().padStart(2, "0");
         slots.push(`${formattedHour}:${formattedMinute}`);
       }
     }
+    slots.push(`${23}:${59}`);
     return slots;
   };
 
@@ -62,17 +67,17 @@ const TimeSection = ({ className = "", scrollRef, onScroll }: TimeSectionProps) 
     <div className={`relative ${className}`}>
       <div
         ref={scrollRef}
-        className='max-h-[98vh] overflow-y-auto scrollbar-hide'
+        className='max-h-[98vh] overflow-y-auto scrollbar-hide bg-white'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}>
-        <div className='flex flex-col'>
+        <div className='flex flex-col pb-[20vh]'>
           {timeSlots.map((time, index) => (
             <div
               key={index}
               className={`
-                flex items-center justify-center px-3 border border-gray-200
+                flex items-center justify-center px-3 border-b border-r border-gray-200
                 h-20  text-xs font-medium
                 ${
                   isCurrentTime(time)

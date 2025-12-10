@@ -11,8 +11,13 @@ interface VenueBarProps {
   onScroll?: (scrollLeft: number) => void;
 }
 
-const VenueBar = ({ venues, selectedVenue, onVenueSelect, scrollRef, onScroll }: VenueBarProps) => {
-
+const VenueBar = ({
+  venues,
+  selectedVenue,
+  onVenueSelect,
+  scrollRef,
+  onScroll,
+}: VenueBarProps) => {
   // Handle scroll event to sync with CalendarGrid
   useEffect(() => {
     const container = scrollRef?.current;
@@ -30,7 +35,7 @@ const VenueBar = ({ venues, selectedVenue, onVenueSelect, scrollRef, onScroll }:
     <div className='relative'>
       <div
         ref={scrollRef}
-        className='flex gap-0 max-w-[98vw] overflow-x-auto scrollbar-hide ml-[118px] border-l border-y'
+        className='flex gap-0 max-w-[90vw] overflow-x-auto scrollbar-hide ml-[119px] border-l'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -41,7 +46,7 @@ const VenueBar = ({ venues, selectedVenue, onVenueSelect, scrollRef, onScroll }:
             onClick={() => onVenueSelect(venue.id)}
             className={`
               shrink-0 flex flex-col items-center justify-center 
-              min-w-[250px] h-10 rounded-none border-x border-gray-300 transition-all
+              min-w-[250px] h-10 rounded-none border-r border-gray-300 transition-all
               ${
                 selectedVenue === venue.id
                   ? "border-blue-500 shadow-md"

@@ -78,11 +78,6 @@ button {
   cursor: pointer;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto #1b1b1b;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

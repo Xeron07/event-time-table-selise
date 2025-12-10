@@ -11,6 +11,7 @@ interface CalendarHeaderProps {
   onVenueSelect: (venueId: string) => void;
   venueBarScrollRef?: React.RefObject<HTMLDivElement>;
   onVenueBarScroll?: (scrollLeft: number) => void;
+  weekDays?: Date[];
 }
 
 const CalendarHeader = ({
@@ -21,11 +22,16 @@ const CalendarHeader = ({
   onVenueSelect,
   venueBarScrollRef,
   onVenueBarScroll,
+  weekDays,
 }: CalendarHeaderProps) => {
   return (
-    <div className='sticky top-0 bg-white z-10 border border-gray-300 w-full'>
+    <div className='sticky top-0 bg-white z-10 border-b border-gray-300 w-full'>
       {/* Week Tab Bar - First Line */}
-      <WeekTabBar selectedDate={selectedDate} onDateSelect={onDateSelect} />
+      <WeekTabBar
+        selectedDate={selectedDate}
+        onDateSelect={onDateSelect}
+        weekDays={weekDays}
+      />
 
       {/* Venue Bar - Second Line */}
       <VenueBar

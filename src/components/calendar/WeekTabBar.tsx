@@ -5,9 +5,14 @@ import { Button } from "../ui/button";
 interface WeekTabBarProps {
   selectedDate: Date;
   onDateSelect: (date: Date) => void;
+  weekDays?: Date[];
 }
 
-const WeekTabBar = ({ selectedDate, onDateSelect }: WeekTabBarProps) => {
+const WeekTabBar = ({
+  selectedDate,
+  onDateSelect,
+  weekDays: propsWeekDays,
+}: WeekTabBarProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Generate 7 days array starting from today or selected week
@@ -25,7 +30,7 @@ const WeekTabBar = ({ selectedDate, onDateSelect }: WeekTabBarProps) => {
     return days;
   };
 
-  const weekDays = getWeekDays();
+  const weekDays = propsWeekDays || getWeekDays();
 
   const isSelected = (date: Date) => {
     return (
@@ -67,13 +72,13 @@ const WeekTabBar = ({ selectedDate, onDateSelect }: WeekTabBarProps) => {
             onClick={() => onDateSelect(day)}
             className={`
               flex flex-col items-center justify-center
-              w-[250px] h-[70px] rounded-none border border-gray-300 transition-all
+              w-[250px] h-[70px] rounded-none border-b border-r border-gray-300 transition-all
               ${
                 isSelected(day)
-                  ? "bg-blue-500 text-white border-blue-500"
+                  ? "bg-blue-500 text-white  "
                   : isToday(day)
-                  ? "bg-blue-50 border-blue-300 text-blue-600"
-                  : "bg-white border-gray-200 hover:border-gray-300 text-gray-700"
+                  ? "bg-blue-50  text-blue-600"
+                  : "bg-white   text-gray-700"
               }
             `}>
             <span className='text-xs font-medium '>{formatDay(day)}</span>
