@@ -35,7 +35,7 @@ const VenueBar = ({
     <div className='relative'>
       <div
         ref={scrollRef}
-        className='flex gap-0 max-w-[90vw] overflow-x-auto scrollbar-hide ml-[119px] border-l'
+        className='flex gap-0 max-w-[90vw] overflow-x-auto scrollbar-hide ml-[123px] border-l'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",

@@ -63,7 +63,7 @@ const WeekTabBar = ({
     <div className='relative'>
       <div
         ref={scrollContainerRef}
-        className='flex gap-0 max-w-[98vw] overflow-x-auto scrollbar-hide pb-0'
+        className='flex gap-0 w-full overflow-x-auto scrollbar-hide pb-0'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",

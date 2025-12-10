@@ -105,7 +105,7 @@ const CalendarView = ({
       {/* Main content area with TimeSection and Grid */}
       <div className='flex flex-1 overflow-hidden'>
         <TimeSection
-          className='w-[120px]'
+          className='w-[124px]'
           scrollRef={timeScrollRef}
           onScroll={handleTimeScroll}
         />
