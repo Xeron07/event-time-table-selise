@@ -54,7 +54,9 @@ const WeekTabBar = ({
   };
 
   const formatDate = (date: Date) => {
-    return `Date: ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    return `Date: ${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
   };
 
   return (
@@ -72,7 +74,7 @@ const WeekTabBar = ({
             onClick={() => onDateSelect(day)}
             className={`
               flex flex-col items-center justify-center
-              w-[250px] h-[70px] rounded-none border-b border-r border-gray-300 transition-all
+              w-[250px] h-[70px] rounded-none border-b border-r border-gray-300 transition-all hover:text-gray-900
               ${
                 isSelected(day)
                   ? "bg-blue-500 text-white  "

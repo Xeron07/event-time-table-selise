@@ -202,7 +202,9 @@ const EventSheet = ({
 
     // Validate no overlaps for each selected venue
     for (const venueId of formData.venueIds) {
-      if (!isTimeVenueAvailable(venueId, formData.startTime, formData.endTime)) {
+      if (
+        !isTimeVenueAvailable(venueId, formData.startTime, formData.endTime)
+      ) {
         const venue = venues.find((v) => v.id === venueId);
         alert(
           `Time slot is not available for venue: ${
@@ -397,7 +399,7 @@ const EventSheet = ({
                         checked={isSelected}
                         onChange={() => available && toggleVenue(venue.id)}
                         disabled={!available}
-                        className='w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary'
+                        className='w-4 h-4 rounded-md bg-white border-2 border-gray-300 text-white accent-green-500 focus:ring-green-500 focus:ring-2 cursor-pointer'
                       />
                       <div
                         className='w-3 h-3 rounded-full'

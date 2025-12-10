@@ -48,7 +48,7 @@ interface LayoutHeaderProps {
 
 const LayoutHeader = ({
   onCreateEvent,
-  onDateSelect: _onDateSelect,
+  onDateChange: _onDateSelect,
   selectionMode,
   onSelectionModeChange,
   selectedDate,
@@ -58,6 +58,18 @@ const LayoutHeader = ({
   yearList,
 }: LayoutHeaderProps) => {
   const currentYear = selectedDate.getFullYear();
+
+  const handleMonthChange = (month: string) => {
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(parseInt(month));
+    _onDateSelect?.(newDate);
+  };
+
+  const handleYearChange = (year: string) => {
+    const newDate = new Date(selectedDate);
+    newDate.setFullYear(parseInt(year));
+    _onDateSelect?.(newDate);
+  };
 
   const handleRangeStartChange = (newStart: Date) => {
     if (newStart <= rangeEnd) {
@@ -111,7 +123,9 @@ const LayoutHeader = ({
         <div className='flex-1 flex justify-center items-center gap-4'>
           {selectionMode === "month" ? (
             <div className='flex items-center gap-3'>
-              <Select value={String(selectedDate.getMonth())}>
+              <Select
+                value={String(selectedDate.getMonth())}
+                onValueChange={handleMonthChange}>
                 <SelectTrigger className='w-[140px]'>
                   <SelectValue placeholder='Select month' />
                 </SelectTrigger>
@@ -126,7 +140,9 @@ const LayoutHeader = ({
                 </SelectContent>
               </Select>
 
-              <Select value={String(currentYear)}>
+              <Select
+                value={String(currentYear)}
+                onValueChange={handleYearChange}>
                 <SelectTrigger className='w-[120px]'>
                   <SelectValue placeholder='Select year' />
                 </SelectTrigger>
@@ -252,8 +268,8 @@ const Layout = ({ onEventSheetChange }: LayoutProps) => {
   };
 
   const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
     if (selectionMode === "month") {
+      setSelectedDate(date);
       const newStart = getMonthStart(date);
       const newEnd = getMonthEnd(date);
       setRangeStart(newStart);

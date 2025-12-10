@@ -1,4 +1,5 @@
 // Time section - fixed position with 15-minute intervals, vertically scrollable
+import generateTimeSlots from "@/utils/generateTimeSlot";
 import { useEffect } from "react";
 
 interface TimeSectionProps {
@@ -12,20 +13,6 @@ const TimeSection = ({
   scrollRef,
   onScroll,
 }: TimeSectionProps) => {
-  // Generate time slots for 24 hours with 15-minute intervals
-  const generateTimeSlots = () => {
-    const slots: string[] = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        const formattedHour = hour.toString().padStart(2, "0");
-        const formattedMinute = minute.toString().padStart(2, "0");
-        slots.push(`${formattedHour}:${formattedMinute}`);
-      }
-    }
-    slots.push(`${23}:${59}`);
-    return slots;
-  };
-
   const timeSlots = generateTimeSlots();
 
   // Auto-scroll to current time on mount
@@ -64,15 +51,15 @@ const TimeSection = ({
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-full ${className}`}>
       <div
         ref={scrollRef}
-        className='max-h-[98vh] overflow-y-auto scrollbar-hide bg-white'
+        className='h-full overflow-y-auto scrollbar-hide bg-white'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}>
-        <div className='flex flex-col pb-[20vh]'>
+        <div className='flex flex-col'>
           {timeSlots.map((time, index) => (
             <div
               key={index}

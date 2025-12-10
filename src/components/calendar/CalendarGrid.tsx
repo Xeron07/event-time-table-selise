@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import type { Venue, Event } from "../../types/event";
 import EventCard from "./EventCard";
+import generateTimeSlots from "@/utils/generateTimeSlot";
 
 interface CalendarGridProps {
   venues: Venue[];
@@ -22,19 +23,6 @@ const CalendarGrid = ({
   scrollRef,
   onScroll,
 }: CalendarGridProps) => {
-  // Generate time slots for 24 hours with 15-minute intervals
-  const generateTimeSlots = () => {
-    const slots: string[] = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        const formattedHour = hour.toString().padStart(2, "0");
-        const formattedMinute = minute.toString().padStart(2, "0");
-        slots.push(`${formattedHour}:${formattedMinute}`);
-      }
-    }
-    return slots;
-  };
-
   const timeSlots = generateTimeSlots();
 
   const handleCellClick = (venueId: string, time: string) => {
@@ -70,7 +58,7 @@ const CalendarGrid = ({
     <div className='relative flex-1 overflow-hidden'>
       <div
         ref={scrollRef}
-        className='max-h-[98vh] max-w-[90vw] bg-gray-100 overflow-auto scrollbar-hide'
+        className='h-full w-full bg-gray-100 overflow-auto scrollbar-hide'
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -90,8 +78,6 @@ const CalendarGrid = ({
                   {/* Cell is clickable for event creation */}
                 </div>
               ))}
-              {/* Bottom padding for last venue to allow scrolling to bottom */}
-              <div className='h-[20vh]' />
             </div>
           ))}
 
