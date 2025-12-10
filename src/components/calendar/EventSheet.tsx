@@ -474,10 +474,17 @@ const EventSheet = ({
               )}
             </div>
             <div className='flex space-x-2'>
-              <Button type='button' onClick={onClose} variant='outline'>
+              <Button
+                type='button'
+                onClick={onClose}
+                variant='outline'
+                className='rounded-md'>
                 Cancel
               </Button>
-              <Button type='submit' form='event-form'>
+              <Button
+                type='submit'
+                form='event-form'
+                className='rounded-md bg-blue-600 text-white hover:bg-gray-100 hover:text-blue-500'>
                 {editingEvent ? "Save Changes" : "Create Event"}
               </Button>
             </div>
